@@ -21,7 +21,7 @@ public class PostLogic : IPostLogic
         User? user = await _userDao.GetByUsername(dto.PosterUsername);
         if (user == null)
         {
-            throw new Exception($"Poster with username {dto.PosterUsername} does not exist");
+            throw new Exception($"Poster with username {dto.PosterUsername} was not found");
         }
 
         Post post = new Post(dto.Title, dto.Body, user);
@@ -35,7 +35,14 @@ public class PostLogic : IPostLogic
         return _postDao.GetAsync();
     }
 
+    public async Task<Post> GetByIdAsync(int id)
+    {
+        return await _postDao.GetByIdAsync(id) ?? throw new Exception($"Post with id {id} was not found");
+    }
+
     private void ValidatePost(Post post)
     {
+        if (string.IsNullOrEmpty(post.Title)) throw new Exception("Title cannot be empty.");
+        if (string.IsNullOrEmpty(post.Body)) throw new Exception("Body cannot be empty.");
     }
 }
