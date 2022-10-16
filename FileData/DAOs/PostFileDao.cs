@@ -28,4 +28,10 @@ public class PostFileDao : IPostDao
 
         return Task.FromResult(post);
     }
+
+    public Task<IEnumerable<Post>> GetAsync()
+    {
+        var posts = _context.Posts.AsEnumerable();
+        return Task.FromResult(posts);
+    }
 }

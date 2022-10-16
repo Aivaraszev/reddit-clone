@@ -30,6 +30,11 @@ public class PostLogic : IPostLogic
         return created;
     }
 
+    public Task<IEnumerable<Post>> GetAsync()
+    {
+        return _postDao.GetAsync();
+    }
+
     private void ValidatePost(Post post)
     {
     }
