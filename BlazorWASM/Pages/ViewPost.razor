@@ -1,0 +1,43 @@
+﻿@page "/ViewPost/{id:int}"
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@inject IPostService PostService
+<div class="card">
+@if (_post == null)
+    {
+        <label>Loading Todo data..</label>
+    }
+    else
+    {
+        <span>@_post.Id</span>
+        <span>@_post.Poster.Username</span>
+        <span>@_post.Title</span>
+        <span>@_post.Body</span>
+
+    }
+    @if (!string.IsNullOrEmpty(msg))
+    {
+        <label style="color: red">@msg</label>
+    }
+</div>
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Post _post = null!;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            _post = await PostService.GetByIdAsync(Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}
