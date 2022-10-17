@@ -1,0 +1,60 @@
+﻿@page "/CreatePost"
+@using Domain.DTOs
+@using HttpClients.ClientInterfaces
+@inject IPostService PostService
+<div class="card">
+    <h3>Create Post</h3>
+    <div class="form-group field">
+        <label>Post Title</label>
+        <input type="text" @bind="_title" @bind:event="oninput"/>
+    </div>
+    <div class="form-group field">
+        <label>Post Body</label>
+        <input type="text" @bind="_body" @bind:event="oninput"/>
+    </div>
+    <div class="form-group field">
+        <label>Username</label>
+        <input type="text" @bind="_username" @bind:event="oninput"/>
+    </div>
+    <div class="button-row">
+        <button @onclick="CreateAsync" disabled="@(Validate())" class="acceptbtn">Create</button>
+    </div>
+    @if (!string.IsNullOrEmpty(_msg))
+    {
+        <label style="color:@_color">@_msg</label>
+    }
+</div>
+
+@code {
+    private string _username = "";
+    private string _title = "";
+    private string _body = "";
+    private string _color = "";
+
+    private string _msg = "";
+
+    private async Task CreateAsync()
+    {
+        _msg = "";
+
+        try
+        {
+            await PostService.CreateAsync(new PostCreationDto(_title, _body, _username));
+            _username = "";
+            _msg = "Post successfully created";
+            _color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _msg = e.Message;
+            _color = "red";
+        }
+    }
+
+    private bool Validate()
+    {
+        return string.IsNullOrEmpty(_title)||string.IsNullOrEmpty(_body)||string.IsNullOrEmpty(_username);
+    }
+
+}

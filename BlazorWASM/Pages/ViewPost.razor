@@ -9,10 +9,9 @@
     }
     else
     {
-        <span>@_post.Id</span>
-        <span>@_post.Poster.Username</span>
-        <span>@_post.Title</span>
-        <span>@_post.Body</span>
+        <span>Username: @_post.Poster.Username</span>
+        <span>Title: @_post.Title</span>
+        <span>Body: @_post.Body</span>
 
     }
     @if (!string.IsNullOrEmpty(msg))

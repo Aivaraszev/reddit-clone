@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Net.Http.Json;
+using System.Text.Json;
+using Domain.DTOs;
 using Domain.Models;
 using HttpClients.ClientInterfaces;
 
@@ -12,6 +14,7 @@ public class PostHttpClient : IPostService
     {
         _client = client;
     }
+
     public async Task<IEnumerable<Post>> GetAsync()
     {
         var response = await _client.GetAsync("/Posts");
@@ -42,5 +45,15 @@ public class PostHttpClient : IPostService
             PropertyNameCaseInsensitive = true
         })!;
         return post;
+    }
+
+    public async Task CreateAsync(PostCreationDto dto)
+    {
+        var response = await _client.PostAsJsonAsync("/posts", dto);
+        if (!response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            throw new Exception(content);
+        }
     }
 }
