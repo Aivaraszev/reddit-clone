@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 using Domain.DTOs;
 using Domain.Models;
@@ -17,6 +18,7 @@ public class PostHttpClient : IPostService
 
     public async Task<IEnumerable<Post>> GetAsync()
     {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtAuthService.Jwt);
         var response = await _client.GetAsync("/Posts");
         var result = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -33,6 +35,7 @@ public class PostHttpClient : IPostService
 
     public async Task<Post> GetByIdAsync(int id)
     {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtAuthService.Jwt);
         var response = await _client.GetAsync($"/Posts/{id}");
         var content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -49,6 +52,7 @@ public class PostHttpClient : IPostService
 
     public async Task CreateAsync(PostCreationDto dto)
     {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtAuthService.Jwt);
         var response = await _client.PostAsJsonAsync("/posts", dto);
         if (!response.IsSuccessStatusCode)
         {
