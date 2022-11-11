@@ -1,9 +1,9 @@
-@page "/CreateUser"
+@page "/Register"
 @using HttpClients.ClientInterfaces
 @using Domain.DTOs
 @inject IUserService UserService
 <div class="card">
-    <h3>CreateUser</h3>
+    <h3>Register</h3>
     <div class="form-group field">
         <label>User name:</label>
         <input type="text" @bind="_username" @bind:event="oninput"/>
