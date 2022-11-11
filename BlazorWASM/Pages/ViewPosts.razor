@@ -13,10 +13,10 @@ else if (!_posts.Any())
 }
 else
 {
-    <MudStack Class="mt-4" Height="100%" Width="100%">
+    <MudStack Spacing="8" Class="mt-4" Height="100%" Width="100%">
         @foreach (var item in _posts)
         {
-            <MudPaper Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
+            <MudPaper Elevation="2" Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
                 <MudText Typo="Typo.h4">@item.Title</MudText>
                 <MudDivider/>
                 <MudText>By: @item.Poster.Username</MudText>
