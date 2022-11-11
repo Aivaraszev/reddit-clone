@@ -2,22 +2,20 @@
 @using System.Security.Claims
 @inject NavigationManager NavMgr
 
-<MudPaper Width="100%">
-    <MudContainer Class="pa-5" MaxWidth="MaxWidth.Medium">
-        <MudPaper Class="pa-5">
-            <AuthorizeView>
-                <Authorized>
-                    <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">Hello @_name</MudText>
-                    <MudButton Class="mt-3" Variant="Variant.Filled" OnClick="CreatePost" Color="Color.Secondary">Create new post</MudButton>
-                </Authorized>
-                <NotAuthorized>
-                    <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">Log in to make posts.</MudText>
-                </NotAuthorized>
-            </AuthorizeView>
-        </MudPaper>
-        <ViewPosts></ViewPosts>
-    </MudContainer>
-</MudPaper>
+<MudContainer Class="pa-5" MaxWidth="MaxWidth.Medium">
+    <MudPaper Class="pa-5">
+        <AuthorizeView>
+            <Authorized>
+                <MudText Typo="Typo.h5" Class="pa-7">Hello @_name</MudText>
+                <MudButton Class="mt-3" Variant="Variant.Filled" OnClick="CreatePost" Color="Color.Secondary">Create new post</MudButton>
+            </Authorized>
+            <NotAuthorized>
+                <MudText Typo="Typo.h5" Class="pa-7">Log in to make posts.</MudText>
+            </NotAuthorized>
+        </AuthorizeView>
+    </MudPaper>
+    <ViewPosts></ViewPosts>
+</MudContainer>
 
 @code
 {
