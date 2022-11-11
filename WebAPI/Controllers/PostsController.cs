@@ -19,11 +19,21 @@ public class PostsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Post>> CreateAsync(PostCreationDto dto)
+    public async Task<ActionResult<Post>> CreateAsync(PostCreationRequestDto dto)
     {
         try
         {
-            Post post = await _postLogic.CreateAsync(dto);
+            if (User.Identity == null)
+            {
+                return Unauthorized("Not logged in");
+            }
+            string username = User.Identity.Name!;
+            Post post = await _postLogic.CreateAsync(new PostCreationDto
+            {
+                Username = username,
+                Title = dto.Title,
+                Body = dto.Body
+            });
             return Created($"/posts/{post.Id}", post);
         }
         catch (Exception e)
