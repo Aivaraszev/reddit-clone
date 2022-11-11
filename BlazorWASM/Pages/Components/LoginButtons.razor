@@ -1,7 +1,7 @@
 ﻿@using HttpClients.ClientInterfaces
 @inject NavigationManager NavMgr
 @inject IAuthService AuthService
-@namespace Login
+@namespace BlazorWASM.Pages.Components
 
 <AuthorizeView>
     <Authorized>
@@ -22,7 +22,6 @@
     private async Task Logout()
     {
         await AuthService.LogoutAsync();
-        NavMgr.NavigateTo("/", true);
+        NavMgr.NavigateTo("/");
     }
-
 }

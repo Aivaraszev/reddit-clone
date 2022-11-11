@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@using Login
+@using BlazorWASM.Pages.Components
 
 <MudThemeProvider/>
 <MudDialogProvider/>
@@ -10,6 +10,7 @@
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Derrit</MudText>
         <MudSpacer />
+        <RegisterButton/>
         <LoginButtons/>
     </MudAppBar>
     <MudMainContent>
