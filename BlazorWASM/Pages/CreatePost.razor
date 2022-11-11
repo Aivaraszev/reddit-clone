@@ -5,12 +5,12 @@
 @inject NavigationManager NavMgr
 @inject ISnackbar Snackbar
 @attribute [Authorize]
-<MudContainer MaxWidth="MaxWidth.Small">
+<MudContainer MaxWidth="MaxWidth.Medium">
     <MudPaper Class="pa-7">
         <MudTextField @bind-Value="_title" InputType="InputType.Text" Label="Title"></MudTextField>
         <MudTextField @bind-Value="_body" Lines="10" InputType="InputType.Text" Label="Body"></MudTextField>
-        <MudButton Variant="Variant.Filled" Disabled="@Validate()" OnClick="CreateAsync" Color="Color.Success">Create</MudButton>
-        <MudButton Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+        <MudButton Class="mt-3 mr-3" Variant="Variant.Filled" Disabled="@Validate()" OnClick="CreateAsync" Color="Color.Success">Create</MudButton>
+        <MudButton Class="mt-3 mr-3" Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
     </MudPaper>
 </MudContainer>
 

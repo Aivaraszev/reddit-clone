@@ -3,7 +3,7 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <MudContainer Class="pa-7" MaxWidth="MaxWidth.Small">
+                    <MudContainer Class="pa-7" MaxWidth="MaxWidth.Medium">
                         <MudText Typo="Typo.h3">You have to be logged in to do this</MudText>
                     </MudContainer>
                 </NotAuthorized>
@@ -13,7 +13,7 @@
         <NotFound>
             <PageTitle>Not found</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
-                <MudContainer Class="pa-7" MaxWidth="MaxWidth.Small">
+                <MudContainer Class="pa-7" MaxWidth="MaxWidth.Medium">
                     <MudText Typo="Typo.h3">Sorry, there's nothing at this address.</MudText>
                 </MudContainer>
             </LayoutView>

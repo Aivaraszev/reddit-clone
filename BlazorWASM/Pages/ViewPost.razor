@@ -3,17 +3,19 @@
 @using HttpClients.ClientInterfaces
 @inject IPostService PostService
 @inject ISnackbar Snackbar
-<MudContainer Class="pa-7" MaxWidth="MaxWidth.Small">
+<MudContainer Class="pa-7" MaxWidth="MaxWidth.Medium">
     @if (_post == null)
     {
         <MudText>Loading Todo data..</MudText>
     }
     else
     {
-        <MudText Typo="Typo.h3">@_post.Title</MudText>
-        <MudPaper Class="pa-3" Width="100%" Square="true">
+        <MudPaper Class="ma-10 pa-7" Width="100%">
             <MudText>By: @_post.Poster.Username</MudText>
-            <MudText>@_post.Body</MudText>
+            <MudDivider/>
+            <MudText Class="pa-5" Align="Align.Center" Typo="Typo.h5">@_post.Title</MudText>
+            <MudDivider/>
+            <MudText Class="ma-5">@_post.Body</MudText>
         </MudPaper>
     }
 </MudContainer>

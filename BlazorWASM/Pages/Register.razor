@@ -4,13 +4,13 @@
 @inject IUserService UserService
 @inject ISnackbar Snackbar
 @inject NavigationManager NavMgr
-<MudContainer MaxWidth="MaxWidth.Small">
+<MudContainer MaxWidth="MaxWidth.Medium">
     <MudPaper Class="pa-7">
         <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
         <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
         <MudTextField @bind-Value="_role" InputType="InputType.Text" Label="Role"></MudTextField>
-        <MudButton Variant="Variant.Filled" OnClick="RegisterAsync" Color="Color.Success">Register</MudButton>
-        <MudButton Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+        <MudButton Class="mt-3 mr-3" Variant="Variant.Filled" OnClick="RegisterAsync" Color="Color.Success">Register</MudButton>
+        <MudButton Class="mt-3 mr-3" Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
     </MudPaper>
 </MudContainer>
 

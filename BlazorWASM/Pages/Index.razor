@@ -3,15 +3,15 @@
 @inject NavigationManager NavMgr
 
 <MudPaper Width="100%">
-    <MudContainer Class="pa-5" MaxWidth="MaxWidth.Small">
+    <MudContainer Class="pa-5" MaxWidth="MaxWidth.Medium">
         <MudPaper Class="pa-5">
             <AuthorizeView>
                 <Authorized>
                     <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">Hello @_name</MudText>
-                    <MudButton Variant="Variant.Filled" OnClick="CreatePost" Color="Color.Secondary">Create new post</MudButton>
+                    <MudButton Class="mt-3" Variant="Variant.Filled" OnClick="CreatePost" Color="Color.Secondary">Create new post</MudButton>
                 </Authorized>
                 <NotAuthorized>
-                    <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">You are not logged in.</MudText>
+                    <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">Log in to make posts.</MudText>
                 </NotAuthorized>
             </AuthorizeView>
         </MudPaper>
