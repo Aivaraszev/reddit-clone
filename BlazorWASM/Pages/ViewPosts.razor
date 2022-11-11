@@ -16,6 +16,7 @@ else if (!_posts.Any())
 else
 {
     <MudStack Height="100%" Width="100%">
+        
         @foreach (var item in _posts)
         {
             <MudPaper Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
@@ -39,7 +40,8 @@ else
         _msg = "";
         try
         {
-            _posts = await PostService.GetAsync();
+            var posts = await PostService.GetAsync();
+            _posts = posts.Reverse();
         }
         catch (Exception e)
         {
