@@ -8,7 +8,6 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize]
 public class PostsController : ControllerBase
 {
     private readonly IPostLogic _postLogic;
@@ -19,6 +18,7 @@ public class PostsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Post>> CreateAsync(PostCreationRequestDto dto)
     {
         try
@@ -27,6 +27,7 @@ public class PostsController : ControllerBase
             {
                 return Unauthorized("Not logged in");
             }
+
             string username = User.Identity.Name!;
             Post post = await _postLogic.CreateAsync(new PostCreationDto
             {
