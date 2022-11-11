@@ -1,0 +1,57 @@
+@page "/CreateUser"
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@inject IUserService UserService
+<div class="card">
+    <h3>CreateUser</h3>
+    <div class="form-group field">
+        <label>User name:</label>
+        <input type="text" @bind="_username" @bind:event="oninput"/>
+        <label>Password:</label>
+        <input type="password" @bind="_password" @bind:event="oninput"/>
+        <label>Role</label>
+        <input type="text" @bind="_role" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(_resultMsg))
+        {
+            <label style="color:@_color">@_resultMsg</label>
+        }
+    </div>
+    <div class="button-row">
+        <button @onclick="CreateAsync" disabled="@(string.IsNullOrEmpty(_username))" class="acceptbtn">Create</button>
+    </div>
+</div>
+
+@code {
+    private string _username = "";
+    private string _password = "";
+    private string _role = "";
+    private string _resultMsg = "";
+    private string _color = "";
+
+    private async Task CreateAsync()
+    {
+        _resultMsg = "";
+
+        try
+        {
+            await UserService.CreateAsync(new UserCreationDto
+            {
+                Username = _username,
+                Password = _password,
+                Role = _role
+            });
+            _username = "";
+            _password = "";
+            _role = "";
+            _resultMsg = "User successfully created";
+            _color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _resultMsg = e.Message;
+            _color = "red";
+        }
+    }
+
+}
