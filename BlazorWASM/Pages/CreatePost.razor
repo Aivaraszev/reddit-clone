@@ -2,6 +2,7 @@
 @using Domain.DTOs
 @using HttpClients.ClientInterfaces
 @inject IPostService PostService
+@inject NavigationManager NavMgr
 @attribute [Authorize]
 <div class="card">
     <h3>Create Post</h3>
@@ -43,6 +44,7 @@
             ;
             _msg = "Post successfully created";
             _color = "green";
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
