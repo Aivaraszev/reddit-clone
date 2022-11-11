@@ -2,14 +2,7 @@
 
 public class PostCreationDto
 {
-    public string PosterUsername { get; }
-    public string Title { get; }
-    public string Body { get; }
-
-    public PostCreationDto(string title, string body, string posterUsername)
-    {
-        Title = title;
-        Body = body;
-        PosterUsername = posterUsername;
-    }
+    public string Username { get; init; }
+    public string Title { get; init; }
+    public string Body { get; init; }
 }
