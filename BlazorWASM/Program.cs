@@ -6,6 +6,7 @@ using Domain.Auth;
 using HttpClients.ClientInterfaces;
 using HttpClients.Implementations;
 using Microsoft.AspNetCore.Components.Authorization;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -20,11 +21,13 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 AuthorizationPolicies.AddPolicies(builder.Services);
 
 builder.Services.AddScoped(
-    sp => 
-        new HttpClient { 
-            BaseAddress = new Uri("https://localhost:7236") 
+    sp =>
+        new HttpClient
+        {
+            BaseAddress = new Uri("https://localhost:7236")
         }
 );
 
 builder.Services.AddAuthorizationCore();
+builder.Services.AddMudServices();
 await builder.Build().RunAsync();
