@@ -24,7 +24,12 @@ public class PostLogic : IPostLogic
             throw new Exception($"Poster with username {dto.Username} was not found");
         }
 
-        Post post = new Post(dto.Title, dto.Body, user);
+        Post post = new Post
+        {
+            Title = dto.Title, 
+            Body = dto.Body, 
+            Poster = user
+        };
         ValidatePost(post);
         Post created = await _postDao.CreateAsync(post);
         return created;
