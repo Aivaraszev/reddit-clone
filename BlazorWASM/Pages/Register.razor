@@ -2,36 +2,25 @@
 @using HttpClients.ClientInterfaces
 @using Domain.DTOs
 @inject IUserService UserService
-<div class="card">
-    <h3>Register</h3>
-    <div class="form-group field">
-        <label>User name:</label>
-        <input type="text" @bind="_username" @bind:event="oninput"/>
-        <label>Password:</label>
-        <input type="password" @bind="_password" @bind:event="oninput"/>
-        <label>Role</label>
-        <input type="text" @bind="_role" @bind:event="oninput"/>
-        @if (!string.IsNullOrEmpty(_resultMsg))
-        {
-            <label style="color:@_color">@_resultMsg</label>
-        }
-    </div>
-    <div class="button-row">
-        <button @onclick="CreateAsync" disabled="@(string.IsNullOrEmpty(_username))" class="acceptbtn">Create</button>
-    </div>
-</div>
+@inject ISnackbar Snackbar
+@inject NavigationManager NavMgr
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Class="pa-7">
+        <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
+        <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+        <MudTextField @bind-Value="_role" InputType="InputType.Text" Label="Role"></MudTextField>
+        <MudButton Variant="Variant.Filled" OnClick="RegisterAsync" Color="Color.Success">Register</MudButton>
+        <MudButton Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+    </MudPaper>
+</MudContainer>
 
 @code {
     private string _username = "";
     private string _password = "";
     private string _role = "";
-    private string _resultMsg = "";
-    private string _color = "";
 
-    private async Task CreateAsync()
+    private async Task RegisterAsync()
     {
-        _resultMsg = "";
-
         try
         {
             await UserService.CreateAsync(new UserCreationDto
@@ -43,14 +32,12 @@
             _username = "";
             _password = "";
             _role = "";
-            _resultMsg = "User successfully created";
-            _color = "green";
+            Snackbar.Add("User successfully created", Severity.Success);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            _resultMsg = e.Message;
-            _color = "red";
+            Snackbar.Add(e.Message, Severity.Error);
         }
     }
 

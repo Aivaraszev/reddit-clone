@@ -2,54 +2,33 @@
 @using HttpClients.ClientInterfaces
 @inject IAuthService AuthService
 @inject NavigationManager NavMgr
-<AuthorizeView>
-    <NotAuthorized>
-        <div class="card">
-            <h3>Please login</h3>
-            <div class="field">
-                <label>User name:</label>
-                <input type="text" @bind="_userName"/>
-            </div>
-            <div class="field">
-                <label style="text-align: center">Password:</label>
-                <input type="password" @bind="_password"/>
-            </div>
-            @if (!string.IsNullOrEmpty(_errorLabel))
-            {
-                <div class="field">
-                    <label style="color: red">
-                        @_errorLabel
-                    </label>
-                </div>
-            }
-            <div class="field">
-                <button class="acceptbtn" @onclick="LoginAsync">Log in</button>
-            </div>
-        </div>
-    </NotAuthorized>
-    <Authorized>
-        <div class="card">
-            <h3>Hello, @context.User.Identity!.Name</h3>
-        </div>
-    </Authorized>
-</AuthorizeView>
+@inject ISnackbar Snackbar
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Class="pa-7">
+        <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
+        <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
+        <MudButton Variant="Variant.Filled" OnClick="LoginAsync" Color="Color.Success">Register</MudButton>
+        <MudButton Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
+    </MudPaper>
+</MudContainer>
+
 @code {
-    private string _userName="";
-    private string _password="";
-    private string _errorLabel="";
+    private string _username = "";
+    private string _password = "";
 
     private async Task LoginAsync()
     {
-        _errorLabel = "";
         try
         {
-            await AuthService.LoginAsync(_userName, _password);
+            await AuthService.LoginAsync(_username, _password);
             NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            _errorLabel = $"Error: {e.Message}";
+            Snackbar.Add(e.Message, Severity.Error);
         }
     }
+
 }
