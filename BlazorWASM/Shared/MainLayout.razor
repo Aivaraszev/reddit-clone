@@ -1,12 +1,11 @@
 ﻿@inherits LayoutComponentBase
 @using BlazorWASM.Pages.Components
-<MudThemeProvider/>
-<MudDialogProvider/>
+<MudThemeProvider IsDarkMode="true"/>
 <MudSnackbarProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudLink Typo="Typo.h5" Class="ml-3 mud-theme-primary" Underline="Underline.None" Href="/">Derrit</MudLink >
+        <MudLink Typo="Typo.h5" Class="ml-3" Underline="Underline.None" Href="/">Derrit</MudLink >
         <MudSpacer/>
         <RegisterButton/>
         <LoginButtons/>
