@@ -2,6 +2,7 @@
 @using Domain.DTOs
 @using HttpClients.ClientInterfaces
 @inject IPostService PostService
+@attribute [Authorize]
 <div class="card">
     <h3>Create Post</h3>
     <div class="form-group field">
