@@ -1,3 +1,44 @@
 ﻿@page "/"
+@using System.Security.Claims
+@inject NavigationManager NavMgr
 
-<ViewPosts></ViewPosts>
+<MudPaper Width="100%">
+    <MudContainer Class="pa-5" MaxWidth="MaxWidth.Small">
+        <MudPaper Class="pa-5">
+            @if (_isLoggedIn)
+            {
+                <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">Hello @_name</MudText>
+                <MudButton OnClick="CreatePost">Create new post</MudButton>
+            }
+            else
+            {
+                <MudText Typo="Typo.h5" Class="pa-7 mud-theme-primary">You are not logged in.</MudText>
+            }
+        </MudPaper>
+        <ViewPosts></ViewPosts>
+    </MudContainer>
+</MudPaper>
+
+@code
+{
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    private string? _name;
+    private bool _isLoggedIn;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+
+        if (user.Identity == null) return;
+        _isLoggedIn = true;
+        _name = user.Identity.Name;
+    }
+
+    private void CreatePost()
+    {
+        NavMgr.NavigateTo("/CreatePost");
+    }
+}

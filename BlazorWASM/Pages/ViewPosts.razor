@@ -3,38 +3,27 @@
 @inject IPostService PostService
 @inject NavigationManager NavMgr
 
-<h3>All Posts</h3>
-
+<MudText Typo="Typo.h3">All Posts</MudText>
 
 @if (_posts == null)
 {
-    <span>Loading...</span>
+    <MudText>Loading...</MudText>
 }
 else if (!_posts.Any())
 {
-    <span>No Posts to display</span>
+    <MudText>No Posts to display</MudText>
 }
 else
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Post Id</th>
-            <th>Poster Username</th>
-            <th>Title</th>
-        </tr>
-        </thead>
-        <tbody>
+    <MudStack Height="100%" Width="100%">
         @foreach (var item in _posts)
         {
-            <tr style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
-                <td>@item.Id</td>
-                <td>@item.Poster.Username</td>
-                <td>@item.Title</td>
-            </tr>
+            <MudPaper Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
+                <MudText>@item.Poster.Username</MudText>
+                <MudText>@item.Title</MudText>
+            </MudPaper>
         }
-        </tbody>
-    </table>
+    </MudStack>
 }
 @if (!string.IsNullOrEmpty(_msg))
 {
