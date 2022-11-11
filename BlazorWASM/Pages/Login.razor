@@ -8,7 +8,7 @@
     <MudPaper Class="pa-7">
         <MudTextField @bind-Value="_username" InputType="InputType.Text" Label="Username"></MudTextField>
         <MudTextField @bind-Value="_password" InputType="InputType.Password" Label="Password"></MudTextField>
-        <MudButton Variant="Variant.Filled" OnClick="LoginAsync" Color="Color.Success">Register</MudButton>
+        <MudButton Variant="Variant.Filled" OnClick="LoginAsync" Color="Color.Success">Login</MudButton>
         <MudButton Variant="Variant.Filled" OnClick="@(() => NavMgr.NavigateTo("/"))" Color="Color.Error">Go Back</MudButton>
     </MudPaper>
 </MudContainer>
