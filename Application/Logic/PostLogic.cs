@@ -18,10 +18,10 @@ public class PostLogic : IPostLogic
 
     public async Task<Post> CreateAsync(PostCreationDto dto)
     {
-        User? user = await _userDao.GetByUsername(dto.PosterUsername);
+        User? user = await _userDao.GetByUsername(dto.Username);
         if (user == null)
         {
-            throw new Exception($"Poster with username {dto.PosterUsername} was not found");
+            throw new Exception($"Poster with username {dto.Username} was not found");
         }
 
         Post post = new Post(dto.Title, dto.Body, user);
