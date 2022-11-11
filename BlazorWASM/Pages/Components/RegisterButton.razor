@@ -1,0 +1,17 @@
+﻿@inject NavigationManager NavMgr
+@namespace BlazorWASM.Pages.Components
+
+<AuthorizeView>
+    <NotAuthorized>
+        <MudIconButton Icon="@Icons.Filled.AppRegistration" OnClick="Register"/>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+    private void Register()
+    {
+        NavMgr.NavigateTo("/Register");
+    }
+
+}
