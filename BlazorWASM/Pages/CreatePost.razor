@@ -12,10 +12,6 @@
         <label>Post Body</label>
         <input type="text" @bind="_body" @bind:event="oninput"/>
     </div>
-    <div class="form-group field">
-        <label>Username</label>
-        <input type="text" @bind="_username" @bind:event="oninput"/>
-    </div>
     <div class="button-row">
         <button @onclick="CreateAsync" disabled="@(Validate())" class="acceptbtn">Create</button>
     </div>
@@ -26,7 +22,6 @@
 </div>
 
 @code {
-    private string _username = "";
     private string _title = "";
     private string _body = "";
     private string _color = "";
@@ -39,8 +34,12 @@
 
         try
         {
-            await PostService.CreateAsync(new PostCreationDto(_title, _body, _username));
-            _username = "";
+            await PostService.CreateAsync(new PostCreationRequestDto
+            {
+                Title = _title,
+                Body = _body
+            });
+            ;
             _msg = "Post successfully created";
             _color = "green";
         }
@@ -54,7 +53,7 @@
 
     private bool Validate()
     {
-        return string.IsNullOrEmpty(_title)||string.IsNullOrEmpty(_body)||string.IsNullOrEmpty(_username);
+        return string.IsNullOrEmpty(_title) || string.IsNullOrEmpty(_body);
     }
 
 }
