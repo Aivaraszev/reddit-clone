@@ -20,7 +20,7 @@ public class UserLogic : IUserLogic
         if (existing != null)
             throw new Exception("Username is already in use");
 
-        User toCreate = new User()
+        User toCreate = new User
         {
             Username = dto.Username,
             Password = dto.Password,
