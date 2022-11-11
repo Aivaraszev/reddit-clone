@@ -26,8 +26,8 @@ public class PostLogic : IPostLogic
 
         Post post = new Post
         {
-            Title = dto.Title, 
-            Body = dto.Body, 
+            Title = dto.Title,
+            Body = dto.Body,
             Poster = user
         };
         ValidatePost(post);

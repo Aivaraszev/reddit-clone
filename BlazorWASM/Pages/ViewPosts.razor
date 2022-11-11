@@ -4,26 +4,26 @@
 @inject NavigationManager NavMgr
 @inject ISnackbar SnackBar
 <MudText Typo="Typo.h3">All Posts</MudText>
-    @if (_posts == null)
-    {
-        <MudText>Loading...</MudText>
-    }
-    else if (!_posts.Any())
-    {
-        <MudText>No Posts to display</MudText>
-    }
-    else
-    {
-        <MudStack Height="100%" Width="100%">
-            @foreach (var item in _posts)
-            {
-                <MudPaper Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
-                    <MudText>@item.Poster.Username</MudText>
-                    <MudText>@item.Title</MudText>
-                </MudPaper>
-            }
-        </MudStack>
-    }
+@if (_posts == null)
+{
+    <MudText>Loading...</MudText>
+}
+else if (!_posts.Any())
+{
+    <MudText>No Posts to display</MudText>
+}
+else
+{
+    <MudStack Height="100%" Width="100%">
+        @foreach (var item in _posts)
+        {
+            <MudPaper Class="pa-3" Width="100%" Square="true" style="cursor: pointer;" @onclick="@(() => NavMgr.NavigateTo($"/ViewPost/{item.Id}"))">
+                <MudText>@item.Poster.Username</MudText>
+                <MudText>@item.Title</MudText>
+            </MudPaper>
+        }
+    </MudStack>
+}
 
 @code {
     private IEnumerable<Post>? _posts;

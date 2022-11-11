@@ -8,11 +8,7 @@ public static class AuthorizationPolicies
     {
         services.AddAuthorizationCore(options =>
         {
-            options.AddPolicy("MustBeAdmin", a =>
-            {
-                a.RequireAuthenticatedUser().RequireClaim("Role", "Admin");
-            });
+            options.AddPolicy("MustBeAdmin", a => { a.RequireAuthenticatedUser().RequireClaim("Role", "Admin"); });
         });
     }
-    
 }

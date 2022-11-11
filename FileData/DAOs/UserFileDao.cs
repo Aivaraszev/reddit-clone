@@ -24,7 +24,7 @@ public class UserFileDao : IUserDao
     {
         User? existing = _context.Users.FirstOrDefault(u =>
             u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)
-            );
+        );
         return Task.FromResult(existing);
     }
 }

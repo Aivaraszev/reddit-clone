@@ -6,9 +6,9 @@ namespace FileData;
 public class FileContext
 {
     private const string filePath = "data.json";
-    
+
     private DataContainer? _dataContainer;
-    
+
     public ICollection<User> Users
     {
         get

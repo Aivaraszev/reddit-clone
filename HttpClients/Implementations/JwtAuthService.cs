@@ -8,7 +8,7 @@ using HttpClients.ClientInterfaces;
 
 namespace HttpClients.Implementations;
 
-public class JwtAuthService :IAuthService
+public class JwtAuthService : IAuthService
 {
     private readonly HttpClient _client;
 
@@ -65,7 +65,7 @@ public class JwtAuthService :IAuthService
         ClaimsPrincipal principal = new(identity);
         return principal;
     }
-    
+
     public async Task LoginAsync(string username, string password)
     {
         UserLoginDto userLoginDto = new()
@@ -98,5 +98,4 @@ public class JwtAuthService :IAuthService
         OnAuthStateChanged.Invoke(principal);
         return Task.CompletedTask;
     }
-
 }
