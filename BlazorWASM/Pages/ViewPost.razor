@@ -14,9 +14,9 @@
         <span>Body: @_post.Body</span>
 
     }
-    @if (!string.IsNullOrEmpty(msg))
+    @if (!string.IsNullOrEmpty(_msg))
     {
-        <label style="color: red">@msg</label>
+        <label style="color: red">@_msg</label>
     }
 </div>
 @code {
@@ -24,11 +24,11 @@
     public int Id { get; set; }
 
     private Post _post = null!;
-    private string msg = "";
+    private string _msg = "";
 
     protected override async Task OnInitializedAsync()
     {
-        msg = "";
+        _msg = "";
         try
         {
             _post = await PostService.GetByIdAsync(Id);
@@ -36,7 +36,7 @@
         catch (Exception e)
         {
             Console.WriteLine(e);
-            msg = e.Message;
+            _msg = e.Message;
         }
     }
 }
