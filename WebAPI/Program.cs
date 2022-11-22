@@ -4,6 +4,7 @@ using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.Auth;
 using EfcDataAccess;
+using EfcDataAccess.DAOs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,8 +20,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PostContext>();
 
-builder.Services.AddScoped<IUserDao, UserFileDao>();
-builder.Services.AddScoped<IPostDao, PostFileDao>();
+builder.Services.AddScoped<IUserDao, UserEfcDao>();
+builder.Services.AddScoped<IPostDao, PostEfcDao>();
 
 builder.Services.AddScoped<IUserLogic, UserLogic>();
 builder.Services.AddScoped<IPostLogic, PostLogic>();
