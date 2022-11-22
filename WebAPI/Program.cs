@@ -3,8 +3,7 @@ using Application.DaoInterfaces;
 using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.Auth;
-using FileData;
-using FileData.DAOs;
+using EfcDataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddScoped<FileContext>();
+builder.Services.AddDbContext<PostContext>();
 
 builder.Services.AddScoped<IUserDao, UserFileDao>();
 builder.Services.AddScoped<IPostDao, PostFileDao>();
