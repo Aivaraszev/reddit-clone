@@ -10,10 +10,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileData", "FileData\FileData.csproj", "{AD9A514C-6DB1-4283-843A-50F9F54D05EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{C5013968-A5BD-4912-B273-87A4842CA0D6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA} = {0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClients", "HttpClients\HttpClients.csproj", "{2BEF40F3-F9A3-4C68-8DE1-6DC958822428}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWASM", "BlazorWASM\BlazorWASM.csproj", "{E34E0009-5653-494B-BBFD-C875D187D367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfcDataAccess", "EfcDataAccess\EfcDataAccess.csproj", "{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A719805B-CAA5-45FB-85C9-F7D959E61548} = {A719805B-CAA5-45FB-85C9-F7D959E61548}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,5 +53,9 @@ Global
 		{E34E0009-5653-494B-BBFD-C875D187D367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34E0009-5653-494B-BBFD-C875D187D367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34E0009-5653-494B-BBFD-C875D187D367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0648B6F9-95CE-473E-AC6C-D8F7F9DA38CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
