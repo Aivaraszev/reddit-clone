@@ -3,7 +3,7 @@
 public class Post
 {
     public int Id { get; set; }
-    public string Title { get; init; }
-    public string Body { get; init; }
-    public User Poster { get; init; }
+    public string Title { get; set; }
+    public string Body { get; set; }
+    public User Poster { get; set; }
 }
